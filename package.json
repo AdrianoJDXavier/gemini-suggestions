@@ -4,7 +4,7 @@
   "description": "O Gemini Suggestions é uma extensão para Visual Studio Code que utiliza inteligência artificial para analisar seu código em tempo real, oferecendo sugestões de melhorias, otimizações e correções. ",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.89.0"
+    "vscode": "^1.86.0"
   },
   "categories": [
     "Other"
@@ -17,6 +17,14 @@
         "command": "gemini-suggestions.helloWorld",
         "title": "Hello World"
       }
+    ],
+    "keybindings": [
+      {
+        "command": "gemini-suggestions.helloWorld",
+        "key": "ctrl+alt+g",
+        "mac": "cmd+alt+g",
+        "when": "true"
+      }
     ]
   },
   "scripts": {
@@ -28,7 +36,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.89.0",
+    "@types/vscode": "^1.86.0",
     "@types/mocha": "^10.0.6",
     "@types/node": "18.x",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
