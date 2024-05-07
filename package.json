@@ -15,7 +15,7 @@
     "commands": [
       {
         "command": "gemini-suggestions.suggestions",
-        "title": "Hello World"
+        "title": "Analyze Code with Gemini"
       }
     ],
     "keybindings": [
@@ -23,7 +23,7 @@
         "command": "gemini-suggestions.suggestions",
         "key": "ctrl+alt+g",
         "mac": "cmd+alt+g",
-        "when": "true"
+        "when": "editorTextFocus"
       }
     ]
   },

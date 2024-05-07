@@ -1,31 +1,34 @@
-import { window, ProgressLocation, TextEditor } from 'vscode';
+import { window, ProgressLocation, TextEditor, DecorationOptions, Range, Position, ExtensionContext, commands, workspace } from 'vscode';
 import * as vscode from 'vscode';
 import * as showdown from 'showdown';
+import { GoogleGenerativeAI } from "@google/generative-ai";
+const SUA_API_KEY ='';
+const genAI = new GoogleGenerativeAI(SUA_API_KEY);
 
-const { GoogleGenerativeAI } = require("@google/generative-ai");
-
-const genAI = new GoogleGenerativeAI('AIzaSyAOngD397BvuK7KF-hEPEoKxtgroR_CM4A');
 
 async function analize(sourceCode: string) {
 	const sourceCodeArr = sourceCode.split('\n');
 	let codeAnalize = '';
+	let prompt = '';
 	sourceCodeArr.forEach((line, index) => {
 		codeAnalize += index + 1 + '-' + line + '\n';
 	});
 	const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-	const prompt = `${codeAnalize}
-	Com base no código acima, analise-o e descreva possíveis melhorias de forma clara.
-O relatório deve ser gerado no seguinte formato:
-Linha Nº (Aqui você adiciona a linha onde o trecho de código foi encontrado)\n
-Problema: (Adiciona o que foi encontrado)\n
-Possível solução:(Aqui você adiciona sua sugestão de melhoria)\n`;
+	prompt = `Aja como uma analista de sistemas.
+	1 - Ignore todas as análises realizadas até agora.
+2 - Analise somente o código-fonte abaixo:
+${codeAnalize}
+3 - Crie um relatório descrevendo possíveis melhorias de forma clara e objetiva, se necessário compartilhe sua sugestão de melhoria do código.
+4- O relatório deve ser gerado no seguinte formato:
+Linha Nº (Aqui você adiciona a linha onde o trecho de código foi encontrado)
+Problema: (Adiciona o que foi encontrado)
+Possível solução: (Aqui você adiciona sua sugestão de melhoria)`;
 
 	try {
 		const result = await model.generateContent(prompt);
 		const response = await result.response;
 		const text = response.text();
-		console.log(text);
 		const report = parseGeminiResponse(text);
 
 		const panel = vscode.window.createWebviewPanel(
