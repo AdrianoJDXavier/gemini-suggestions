@@ -1,4 +1,4 @@
-import { window, ProgressLocation, TextEditor, DecorationOptions, Range, Position, ExtensionContext, commands, workspace } from 'vscode';
+import { window, ProgressLocation } from 'vscode';
 import * as vscode from 'vscode';
 import * as showdown from 'showdown';
 import { GoogleGenerativeAI } from "@google/generative-ai";
