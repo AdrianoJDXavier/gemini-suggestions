@@ -26,6 +26,8 @@ Gemini Suggestions é uma extensão para Visual Studio Code que emprega intelig�
 
 Após configurar o ambiente e a extensão, utilize o atalho `Ctrl+Alt+G` para ativar a análise de IA em qualquer arquivo suportado. Aproveite as sugestões inteligentes para otimizar e melhorar seu código eficientemente!
 
+![Demonstração do Gemini Suggestions](https://github.com/AdrianoJDXavier/gemini-suggestions/src/img/template.gif)
+
 ## 📝 Licença
 
 Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](https://choosealicense.com/licenses/mit/) para mais detalhes.
